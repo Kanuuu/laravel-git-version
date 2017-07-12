@@ -16,7 +16,7 @@ Installation
 
 Require it in your Laravel/Lumen project:
 
-    composer require tremby/laravel-git-version
+    composer require joelbb/laravel-git-version
 
 Use
 ---
