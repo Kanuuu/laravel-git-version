@@ -2,6 +2,7 @@
 namespace Tremby\LaravelGitVersion;
 
 use Config;
+use Carbon\Carbon;
 
 class GitVersionHelper
 {
@@ -25,13 +26,13 @@ class GitVersionHelper
      * describe` fails
      * @return string Version string
      */
-    public static function getVersion()
+    public static function getVersion($withdate = false)
     {
         // If we have a version file, just return its contents
         if (file_exists(self::versionFile())) {
             return trim(file_get_contents(self::versionFile()));
         }
-
+        $date = '';
         // Remember current directory
         $dir = getcwd();
 
@@ -39,16 +40,26 @@ class GitVersionHelper
         chdir(base_path());
 
         // Get version string from git
-        $output = shell_exec('git describe --always --tags --dirty');
-
-        // Change back
-        chdir($dir);
+        $output = shell_exec('git describe --always --tags');
 
         if ($output === null) {
             throw new Exception\CouldNotGetVersionException;
         }
 
-        return trim($output);
+        // Get date of commit
+        if ($withdate){
+            $date = shell_exec('git show -s --format=%ci '. $output);
+        }
+
+        if ($date === null) {
+            throw new Exception\CouldNotGetVersionException;
+        }
+
+        // Change back
+        chdir($dir);
+
+
+        return ($withdate ? Carbon::parse(trim($date))->format('Ymd') : '') .' | '. trim($output);
     }
 
     /**
@@ -63,4 +74,18 @@ class GitVersionHelper
     {
         return self::appName() . '/' . self::getVersion();
     }
+    /**
+     * Get a string identifying the app version and version or git commit
+     *
+     * @see getVersion
+     * @throws CouldNotGetVersionException if there is no version file and `git
+     * describe` fails
+     * @return string App name and version string
+     */
+    public static function getAppVerAndVersion()
+    {
+        return 'ver.'.Config::get('app.version') . ' ' . self::getVersion(true);
+    }
+   
+
 }
