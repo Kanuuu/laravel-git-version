@@ -1,5 +1,5 @@
 {
-    "name": "tremby/laravel-git-version",
+    "name": "kanuuu/laravel-git-version",
     "description": "A helper to get the current git version of the application",
     "require": {
         "illuminate/support": ">=4"
@@ -13,7 +13,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Tremby\\LaravelGitVersion\\": "src/"
+            "Kanuuu\\LaravelGitVersion\\": "src/"
         }
     }
 }

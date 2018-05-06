@@ -1,5 +1,5 @@
 <?php
-namespace Tremby\LaravelGitVersion;
+namespace Kanuuu\LaravelGitVersion;
 
 use Config;
 use Carbon\Carbon;

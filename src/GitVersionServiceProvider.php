@@ -1,5 +1,5 @@
 <?php
-namespace Tremby\LaravelGitVersion;
+namespace Kanuuu\LaravelGitVersion;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -16,7 +16,7 @@ class GitVersionServiceProvider extends ServiceProvider
             $this->loadViewsFrom(__DIR__ . '/../resources/views', 'git-version');
         } else {
             // Laravel 4
-            $this->package('tremby/git-version', null, __DIR__ . '/../resources');
+            $this->package('kanuuu/git-version', null, __DIR__ . '/../resources');
         }
     }
 }

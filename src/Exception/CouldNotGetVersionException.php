@@ -1,5 +1,5 @@
 <?php
-namespace Tremby\LaravelGitVersion\Exception;
+namespace Kanuuu\LaravelGitVersion\Exception;
 
 use RuntimeException;
 

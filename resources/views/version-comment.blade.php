@@ -1,1 +1,1 @@
-<!-- {{ \Tremby\LaravelGitVersion\GitVersionHelper::getNameAndVersion() }} -->
+<!-- {{ \Kanuuu\LaravelGitVersion\GitVersionHelper::getNameAndVersion() }} -->
